@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>blogposts!</h1>
+    {% if blogs|length == 0 %}
+    <p>No entries yet</p>
+    {% else %}
+
+        <ul style="list-style-type: none;">
+            {% for user in users %}
+            {% for blog in blogs %}
+                {% if user.id == blog.owner_id %}
+                    <li><h2><a href="/blog?id={{blog.id}}">{{blog.title}}</a></h2>
+                        <p>{{blog.body}}</p>
+                        <p><font size="2"><i>written by <a href="/blog?user={{user.id}}">{{user.email}}</i></font></a></p>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+{% endblock %}

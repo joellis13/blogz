@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel= "stylesheet" type= "text/css" href=" ../static/style.css">
+    </head>
+<body style="width: 768px; margin: auto;">
+
+    <div style="float: left;">
+        <div style="display: inline-block; padding-top: 10px; padding-right:20px;"><a href="/">home </a></div>
+        <div style="display: inline-block; padding-top: 10px; padding-right:20px;"><a href="/blog"> all posts </a></div>
+        <div style="display: inline-block; padding-top: 10px; padding-right:20px;"><a href="/newpost"> new post </a></div>
+        
+    </div>
+    <div style="float: right;">
+        {% if 'email' in session %}
+        <div  style="padding-top: 5px;">
+            Logged in as: {{ session['email'] }}
+            <form action="/logout" method="POST" id="logout">
+                <input type="submit" value="Log Out" />
+            </form></div>
+        {% else %}
+            <div style="display: inline-block; padding-top: 10px; padding-left: 20px;"><a href="signup">signup</a></div>
+            <div style="display: inline-block; padding-top: 10px; padding-left: 20px;"><a href="login">login</a></div>
+        {% endif %}
+        
+    </div>
+    <br><br><br>
+
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+</html>
